@@ -1,0 +1,7 @@
+/build
+/app/build
+/.idea
+/app/.gradle
+.idea
+.idea/
+*.db
