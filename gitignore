@@ -1,6 +1,6 @@
 /build
 /app/build
-/.idea
+app/.idea
 /app/.gradle
 app.idea
 app.idea/
