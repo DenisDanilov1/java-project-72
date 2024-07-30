@@ -1,7 +1,7 @@
 /build
 /app/build
-app/.idea
+/app/.idea
 /app/.gradle
-app.idea
-app.idea/
+.idea
+.idea/
 *.db
