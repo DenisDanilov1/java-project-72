@@ -5,25 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="127c6467-499b-4e8f-a4f2-5dfd1bac77d9" name="Changes" comment="uploaded the changes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/controller/UrlController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/dto/BasePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/dto/UrlPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/dto/UrlsPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/model/Url.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/model/UrlCheck.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/repository/BaseRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/repository/UrlCheckRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/repository/UrlRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/util/FormattedTime.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/util/NamedRoutes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.jte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/layout/page.jte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/urls/index.jte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/urls/show.jte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/hexlet/code/AppTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hexlet/code/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hexlet/code/App.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -380,7 +363,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722416809874</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="uploaded the changes">
+      <option name="closed" value="true" />
+      <created>1725442975459</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1725442975459</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
