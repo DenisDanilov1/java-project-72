@@ -1,23 +1,17 @@
-setup:
-	gradle wrapper --gradle-version 7.4
-
 clean:
 	./gradlew clean
 
 build:
 	./gradlew clean build
 
-start:
-	APP_ENV=development ./gradlew run
-
 install:
-	./gradlew install
+	./gradlew clean install
 
-start-dist:
-	APP_ENV=production ./build/install/java-javalin-blog/bin/java-javalin-blog
+run-dist:
+	./build/install/java-package/bin/java-package
 
-lint:
-	./gradlew checkstyleMain checkstyleTest
+run:
+	./gradlew run
 
 test:
 	./gradlew test
@@ -25,13 +19,13 @@ test:
 report:
 	./gradlew jacocoTestReport
 
-check-updates:
-	./gradlew dependencyUpdates
+lint:
+	./gradlew checkstyleMain checkstyleTest
 
-image-build:
-	docker build -t hexletcomponents/java-javalin-blog:latest .
+update-deps:
+	./gradlew useLatestVersions
 
-image-push:
-	docker push hexletcomponents/java-javalin-blog:latest
+
+build-run: build run
 
 .PHONY: build
