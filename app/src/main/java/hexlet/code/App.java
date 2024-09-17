@@ -19,8 +19,6 @@ import java.util.stream.Collectors;
 import io.javalin.rendering.template.JavalinJte;
 import gg.jte.resolve.ResourceCodeResolver;
 
-import static hexlet.code.repository.BaseRepository.dataSource;
-
 public class App {
     private static int getPort() {
         String port = System.getenv().getOrDefault("PORT", "7070");
@@ -44,15 +42,16 @@ public class App {
         return templateEngine;
     }
 
-    public static void main(String[] args) throws SQLException, IOException {
+    public static void main(String[] args) throws IOException, SQLException {
         var app = getApp();
         app.start(getPort());
     }
 
     public static Javalin getApp() throws IOException, SQLException {
         var hikariConfig = new HikariConfig();
-        hikariConfig.setJdbcUrl(System.getenv().getOrDefault("JDBC_DATABASE_URL",
-                "jdbc:h2:mem:project;DB_CLOSE_DELAY=-1;"));
+        var jdbcUrl = System.getenv().getOrDefault("JDBC_DATABASE_URL", "jdbc:h2:mem:project;DB_CLOSE_DELAY=-1;");
+        hikariConfig.setJdbcUrl(jdbcUrl);
+        System.out.println("jdbcUrl: " + jdbcUrl);
 
         var dataSource = new HikariDataSource(hikariConfig);
         var sql = readResourceFile("schema.sql");
