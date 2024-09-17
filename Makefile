@@ -1,5 +1,3 @@
-.DEFAULT_GOAL := build-run
-
 clean:
 	make -C app clean
 
@@ -29,5 +27,3 @@ update-deps:
 
 
 build-run: build run
-
-.PHONY: build
