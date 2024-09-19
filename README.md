@@ -26,7 +26,3 @@ make run
 ```
 make test
 ```
-## Migration db
-```
-make generate-migrations
-```
