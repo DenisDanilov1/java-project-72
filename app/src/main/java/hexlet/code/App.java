@@ -18,7 +18,9 @@ import java.util.stream.Collectors;
 
 import io.javalin.rendering.template.JavalinJte;
 import gg.jte.resolve.ResourceCodeResolver;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class App {
     private static int getPort() {
         String port = System.getenv().getOrDefault("PORT", "7070");
@@ -28,7 +30,7 @@ public class App {
     public static String readResourceFile(String filename) throws IOException {
         InputStream inputStream = App.class.getClassLoader().getResourceAsStream(filename);
         if (inputStream == null) {
-            throw new RuntimeException("Not found");
+            throw new RuntimeException("Filename not found: " + filename);
         } else {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             return reader.lines().collect(Collectors.joining(System.lineSeparator()));
@@ -55,11 +57,10 @@ public class App {
         var dataSource = new HikariDataSource(hikariConfig);
         var sql = readResourceFile("schema.sql");
 
+        log.info(sql);
         try (var connection = dataSource.getConnection();
              var statement = connection.createStatement()) {
             statement.execute(sql);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
         BaseRepository.dataSource = dataSource;
