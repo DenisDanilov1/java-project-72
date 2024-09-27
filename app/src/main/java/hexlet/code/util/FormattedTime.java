@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class FormattedTime {
     public static String get(Timestamp time) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         return dtf.format(time.toLocalDateTime());
     }
 }

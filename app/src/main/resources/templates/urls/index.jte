@@ -1,6 +1,7 @@
 @import hexlet.code.dto.UrlsPage
 @import hexlet.code.util.NamedRoutes
 @import hexlet.code.util.FormattedTime
+@import java.sql.Timestamp
 
 @param UrlsPage page
 
@@ -28,7 +29,7 @@ content = @`
                     </td>
 
                     <td>@if(page.getChecks().get(url.getId()) != null)
-                            ${FormattedTime.get(page.getChecks().get(url.getId()).getCreatedAt())}
+                            ${FormattedTime.get(Timestamp.valueOf(page.getChecks().get(url.getId()).getCreatedAt()))}
                         @endif
                     </td>
 

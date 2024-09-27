@@ -64,7 +64,7 @@ public class UrlCheckRepository extends BaseRepository {
     }
 
     public static Optional<UrlCheck> getCheck(Long urlId) throws SQLException {
-        String sql = "SELECT * FROM url_checks WHERE url_id = ? ORDER BY createdAt DESC LIMIT 1";
+        String sql = "SELECT * FROM url_checks WHERE url_id = ? ORDER BY created_at DESC LIMIT 1";
 
         try (var conn = dataSource.getConnection();
              var stmt = conn.prepareStatement(sql)) {
