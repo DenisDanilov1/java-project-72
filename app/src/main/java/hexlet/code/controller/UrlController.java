@@ -59,11 +59,11 @@ public class UrlController {
     }
 
     public static void showUrl(Context ctx) throws SQLException {
-        var id = ctx.pathParamAsClass("id", Long.class).get();
-        var url = UrlRepository.find(id)
-                .orElseThrow(() -> new NotFoundResponse("Url not found"));
+        var urlId = ctx.pathParamAsClass("id", Long.class).get();
+        var url = UrlRepository.find(urlId)
+                .orElseThrow(() -> new NotFoundResponse("Url" + urlId + "not found"));
 
-        var checks = UrlCheckRepository.getChecks(id);
+        var checks = UrlCheckRepository.getChecks(urlId);
         var page = new UrlPage(url, checks);
 
         page.setFlash(ctx.consumeSessionAttribute("flash"));
@@ -101,11 +101,10 @@ public class UrlController {
             UrlCheckRepository.save(check);
             ctx.sessionAttribute("flash", "Проверка прошла успешно");
             ctx.sessionAttribute("type", "success");
-            ctx.redirect(NamedRoutes.urlPath(id));
         } catch (UnirestException e) {
             ctx.sessionAttribute("flash", "Не удалось проверить");
             ctx.sessionAttribute("type", "danger");
-            ctx.redirect(NamedRoutes.urlPath(id));
         }
+        ctx.redirect(NamedRoutes.urlPath(id));
     }
 }

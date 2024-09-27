@@ -5,6 +5,7 @@ import hexlet.code.model.UrlCheck;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,13 +25,13 @@ public class UrlCheckRepository extends BaseRepository {
             stmt.setString(3, check.getH1());
             stmt.setString(4, check.getTitle());
             stmt.setString(5, check.getDescription());
-            stmt.setTimestamp(6, createdAt);
+            stmt.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
 
             stmt.executeUpdate();
             var keys = stmt.getGeneratedKeys();
             if (keys.next()) {
                 check.setId(keys.getLong(1));
-                check.setCreatedAt(createdAt);
+                check.setCreatedAt(createdAt.toLocalDateTime());
             } else {
                 throw new SQLException("Url not found");
             }
@@ -55,7 +56,7 @@ public class UrlCheckRepository extends BaseRepository {
                 var createdAt = checks.getTimestamp("created_at");
                 var check = new UrlCheck(statusCode, title, h1, desc, urlId);
                 check.setId(id);
-                check.setCreatedAt(createdAt);
+                check.setCreatedAt(createdAt.toLocalDateTime());
                 result.add(check);
             }
             return result;
@@ -63,7 +64,7 @@ public class UrlCheckRepository extends BaseRepository {
     }
 
     public static Optional<UrlCheck> getCheck(Long urlId) throws SQLException {
-        String sql = "SELECT * FROM url_checks WHERE url_id = ? ORDER BY created_at DESC LIMIT 1";
+        String sql = "SELECT * FROM url_checks WHERE url_id = ? ORDER BY createdAt DESC LIMIT 1";
 
         try (var conn = dataSource.getConnection();
              var stmt = conn.prepareStatement(sql)) {
@@ -79,7 +80,7 @@ public class UrlCheckRepository extends BaseRepository {
                 var createdAt = result.getTimestamp("created_at");
                 var check = new UrlCheck(statusCode, title, h1, desc, urlId);
                 check.setId(id);
-                check.setCreatedAt(createdAt);
+                check.setCreatedAt(createdAt.toLocalDateTime());
 
                 return Optional.of(check);
             }
@@ -105,7 +106,7 @@ public class UrlCheckRepository extends BaseRepository {
                 var createdAt = checks.getTimestamp("created_at");
                 var check = new UrlCheck(statusCode, title, h1, desc, urlId);
                 check.setId(id);
-                check.setCreatedAt(createdAt);
+                check.setCreatedAt(createdAt.toLocalDateTime());
 
                 result.put(id, check);
             }
