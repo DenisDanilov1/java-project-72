@@ -18,13 +18,13 @@ content = @`
     <body>
     <div class="mx-auto p-4 py-md-5">
         <main>
-            <h1>Analyzer</h1>
+            <h1>Анализатор страниц</h1>
             <form action="${NamedRoutes.urlsPath()}" method="post" class="rss-form text-body">
                 <div>
                     <input id="url-input" autofocus type="text" required name="url"
                            aria-label="url" class="form-control w-100" placeholder="cсылка"
                            autocomplete="off">
-                    <label for="url-input">Ссылка</label>
+                    <label for="url-input">Пример: https://ru.hexlet.io/</label>
                 </div>
                 <div>
                     <button type="submit">Проверить</button>

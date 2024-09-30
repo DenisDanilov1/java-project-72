@@ -20,10 +20,10 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="/">Main page</a>
+                <a class="nav-link" href="/">Главная страница</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/urls">Urls</a>
+                <a class="nav-link" href="/urls">Url-адреса</a>
 
             </li>
         </ul>
