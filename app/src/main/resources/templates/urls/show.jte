@@ -1,7 +1,6 @@
 @import hexlet.code.dto.UrlPage
 @import hexlet.code.util.NamedRoutes
 @import hexlet.code.util.FormattedTime
-@import java.sql.Timestamp
 
 @param UrlPage page
 
@@ -18,7 +17,7 @@ content = @`
         Имя : ${page.getUrl().getName()}
     </div>
     <div class="mb-3">
-        Дата создания : ${FormattedTime.get(Timestamp.valueOf(page.getUrl().getCreatedAt()))}
+        Дата создания : ${FormattedTime.format(page.getUrl().getCreatedAt())}
     </div>
 
     <h2>Проверки</h2>
@@ -48,7 +47,7 @@ content = @`
                     <td>${check.getTitle()}</td>
                     <td>${check.getH1()}</td>
                     <td>${check.getDescription()}</td>
-                    <td>${FormattedTime.get(Timestamp.valueOf(check.getCreatedAt()))}</td>
+                    <td>${FormattedTime.format(check.getCreatedAt())}</td>
                 </tr>
             @endfor
             </tbody>
