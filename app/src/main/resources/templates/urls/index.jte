@@ -17,7 +17,6 @@ content = @`
             <th>Код ответа</th>
         </tr>
         </thead>
-        @if(!page.getUrls().isEmpty())
             <tbody>
             @for (var url : page.getUrls())
                 <tr>
