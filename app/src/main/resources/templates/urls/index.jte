@@ -42,7 +42,6 @@ content = @`
                 </tr>
             @endfor
             </tbody>
-        @endif
     </table>
 `
 )
