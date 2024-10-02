@@ -23,18 +23,22 @@ content = @`
                 <tr>
                     <td>${url.getId()}</td>
 
-                    <td><a href="${NamedRoutes.urlPath(url.getId())}">
-                            ${url.getName()}</a>
+                    <td>
+                        <a href="${NamedRoutes.urlPath(url.getId())}">
+                            ${url.getName()}
+                        </a>
                     </td>
 
-                    <td>@if(page.getChecks().get(url.getId()) != null)
-                            ${FormattedTime.format(page.getChecks().get(url.getId()).getCreatedAt())}
-                        @endif
+                    <td>
+                        <a>${page.getChecks().get(url.getId()) == null ? "" :
+                             FormattedTime.format(page.getChecks().get(url.getId()).getCreatedAt())}
+                        </a>
                     </td>
 
-                    <td>@if(page.getChecks().get(url.getId()) != null)
-                            ${page.getChecks().get(url.getId()).getStatusCode()}
-                        @endif
+                    <td>
+                        <a>${page.getChecks().get(url.getId()) == null ? "" :
+                             String.valueOf(page.getChecks().get(url.getId()).getStatusCode())}
+                        </a>
                     </td>
                 </tr>
             @endfor
