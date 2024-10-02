@@ -32,13 +32,13 @@ content = @`
         <tr>
             <th>ID</th>
             <th>Код ответа</th>
-            <th>Заглавие</th>
+            <th>title</th>
             <th>h1</th>
             <th>description</th>
             <th>Последняя проверка</th>
         </tr>
         </thead>
-        @if(!page.getChecks().isEmpty())
+        @if(page.getChecks() != null)
             <tbody>
             @for (var check : page.getChecks())
                 <tr>
