@@ -32,7 +32,7 @@ content = @`
         <tr>
             <th>ID</th>
             <th>Код ответа</th>
-            <th>title</th>
+            <th>Заглавие</th>
             <th>h1</th>
             <th>description</th>
             <th>Последняя проверка</th>
