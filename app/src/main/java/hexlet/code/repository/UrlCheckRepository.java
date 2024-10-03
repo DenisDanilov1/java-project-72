@@ -114,27 +114,27 @@ public class UrlCheckRepository extends BaseRepository {
         }
     }
 
-//    public static Map<Long, UrlCheck> getLastUrlsCheck() throws SQLException {
-//        var sql = "SELECT url_id, status_code, MAX(created_at) AS created_at "
-//                + "FROM url_checks GROUP BY url_id, status_code";
-//        try (var conn = dataSource.getConnection();
-//             var preparedStatement = conn.prepareStatement(sql)) {
-//            var resultSet = preparedStatement.executeQuery();
-//            var result = new LinkedHashMap<Long, UrlCheck>();
-//            while (resultSet.next()) {
-//                var urlId = resultSet.getLong("url_id");
-//                var statusCode = resultSet.getInt("status_code");
-//                var title = resultSet.getString("title");
-//                var h1 = resultSet.getString("h1");
-//                var desc = resultSet.getString("description");
-//                var createdAt = resultSet.getTimestamp("created_at");
-//                var check = new UrlCheck(statusCode, title, h1, desc, urlId);
-//                check.setUrlId(urlId);
-//                check.setStatusCode(statusCode);
-//                check.setCreatedAt(createdAt.toLocalDateTime());
-//                result.put(urlId, check);
-//            }
-//            return result;
-//        }
-//    }
+    public static Map<Long, UrlCheck> getLastUrlsCheck() throws SQLException {
+        var sql = "SELECT url_id, status_code, MAX(created_at) AS created_at "
+                + "FROM url_checks GROUP BY url_id, status_code";
+        try (var conn = dataSource.getConnection();
+             var preparedStatement = conn.prepareStatement(sql)) {
+            var resultSet = preparedStatement.executeQuery();
+            var result = new LinkedHashMap<Long, UrlCheck>();
+            while (resultSet.next()) {
+                var urlId = resultSet.getLong("url_id");
+                var statusCode = resultSet.getInt("status_code");
+                var title = resultSet.getString("title");
+                var h1 = resultSet.getString("h1");
+                var desc = resultSet.getString("description");
+                var createdAt = resultSet.getTimestamp("created_at");
+                var check = new UrlCheck(statusCode, title, h1, desc, urlId);
+                check.setUrlId(urlId);
+                check.setStatusCode(statusCode);
+                check.setCreatedAt(createdAt.toLocalDateTime());
+                result.put(urlId, check);
+            }
+            return result;
+        }
+    }
 }
