@@ -5,7 +5,12 @@ import hexlet.code.model.UrlCheck;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
 
 public class UrlCheckRepository extends BaseRepository {
     public static void save(UrlCheck check) throws SQLException {
@@ -34,7 +39,7 @@ public class UrlCheckRepository extends BaseRepository {
     }
 
     public static List<UrlCheck> getChecks(Long urlId) throws SQLException {
-        String sql = "SELECT * FROM url_checks WHERE url_id = ? ORDER BY created_at DESC LIMIT 1";
+        String sql = "SELECT * FROM url_checks WHERE url_id = ? ORDER BY created_at DESC";
 
         try (var conn = dataSource.getConnection();
              var stmt = conn.prepareStatement(sql)) {
