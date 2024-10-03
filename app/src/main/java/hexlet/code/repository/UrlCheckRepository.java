@@ -5,11 +5,7 @@ import hexlet.code.model.UrlCheck;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.ArrayList;
+import java.util.*;
 
 public class UrlCheckRepository extends BaseRepository {
     public static void save(UrlCheck check) throws SQLException {
@@ -38,7 +34,7 @@ public class UrlCheckRepository extends BaseRepository {
     }
 
     public static List<UrlCheck> getChecks(Long urlId) throws SQLException {
-        String sql = "SELECT * FROM url_checks WHERE url_id = ?";
+        String sql = "SELECT * FROM url_checks WHERE url_id = ? ORDER BY created_at DESC LIMIT 1";
 
         try (var conn = dataSource.getConnection();
              var stmt = conn.prepareStatement(sql)) {
@@ -112,4 +108,28 @@ public class UrlCheckRepository extends BaseRepository {
             return result;
         }
     }
+
+//    public static Map<Long, UrlCheck> getLastUrlsCheck() throws SQLException {
+//        var sql = "SELECT url_id, status_code, MAX(created_at) AS created_at "
+//                + "FROM url_checks GROUP BY url_id, status_code";
+//        try (var conn = dataSource.getConnection();
+//             var preparedStatement = conn.prepareStatement(sql)) {
+//            var resultSet = preparedStatement.executeQuery();
+//            var result = new LinkedHashMap<Long, UrlCheck>();
+//            while (resultSet.next()) {
+//                var urlId = resultSet.getLong("url_id");
+//                var statusCode = resultSet.getInt("status_code");
+//                var title = resultSet.getString("title");
+//                var h1 = resultSet.getString("h1");
+//                var desc = resultSet.getString("description");
+//                var createdAt = resultSet.getTimestamp("created_at");
+//                var check = new UrlCheck(statusCode, title, h1, desc, urlId);
+//                check.setUrlId(urlId);
+//                check.setStatusCode(statusCode);
+//                check.setCreatedAt(createdAt.toLocalDateTime());
+//                result.put(urlId, check);
+//            }
+//            return result;
+//        }
+//    }
 }
