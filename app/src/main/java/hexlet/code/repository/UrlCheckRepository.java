@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.HashMap;
 
 
 public class UrlCheckRepository extends BaseRepository {
@@ -111,6 +112,30 @@ public class UrlCheckRepository extends BaseRepository {
                 result.put(id, check);
             }
             return result;
+        }
+    }
+
+    public static Map<Long, UrlCheck> getLastChecks() throws SQLException {
+        var sql = "SELECT DISTINCT ON (url_id) * FROM url_checks ORDER BY url_id DESC, id DESC";
+        try (var conn = dataSource.getConnection();
+             var stmt = conn.prepareStatement(sql)) {
+            var resultSet = stmt.executeQuery();
+            Map<Long, UrlCheck> urlChecks = new HashMap<>();
+            while (resultSet.next()) {
+
+                var statusCode = resultSet.getInt("status_code");
+                var h1 = resultSet.getString("h1");
+                var title = resultSet.getString("title");
+                var description = resultSet.getString("description");
+                var createdAt = resultSet.getTimestamp("created_at");
+                var urlId = resultSet.getLong("url_id");
+                var id = resultSet.getLong("id");
+                var urlCheck = new UrlCheck(statusCode, title, h1, description, urlId);
+                urlCheck.setId(id);
+                urlCheck.setCreatedAt(createdAt.toLocalDateTime());
+                urlChecks.put(urlId, urlCheck);
+            }
+            return urlChecks;
         }
     }
 }

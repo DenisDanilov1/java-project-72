@@ -38,9 +38,9 @@ content = @`
             <th>Последняя проверка</th>
         </tr>
         </thead>
-        @if(page.getChecks() != null)
+        @if(page.getUrlChecks() != null)
             <tbody>
-            @for (var check : page.getChecks())
+            @for (var check : page.getUrlChecks())
                 <tr>
                     <td>${check.getId()}</td>
                     <td>${check.getStatusCode()}</td>
