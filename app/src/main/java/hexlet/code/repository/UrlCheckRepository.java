@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -86,32 +85,6 @@ public class UrlCheckRepository extends BaseRepository {
                 return Optional.of(check);
             }
             return Optional.empty();
-        }
-    }
-
-    public static Map<Long, UrlCheck> getAllChecks() throws SQLException {
-        var sql = "SELECT DISTINCT ON (url_id) * FROM url_checks ORDER BY url_id, created_at";
-
-        try (var conn = dataSource.getConnection();
-             var stmt = conn.prepareStatement(sql)) {
-            var checks = stmt.executeQuery();
-            var result = new LinkedHashMap<Long, UrlCheck>();
-
-            while (checks.next()) {
-                var id = checks.getLong("id");
-                var urlId = checks.getLong("url_id");
-                var statusCode = checks.getInt("status_code");
-                var title = checks.getString("title");
-                var h1 = checks.getString("h1");
-                var desc = checks.getString("description");
-                var createdAt = checks.getTimestamp("created_at");
-                var check = new UrlCheck(statusCode, title, h1, desc, urlId);
-                check.setId(id);
-                check.setCreatedAt(createdAt.toLocalDateTime());
-
-                result.put(id, check);
-            }
-            return result;
         }
     }
 
