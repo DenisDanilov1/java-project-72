@@ -74,15 +74,6 @@ public class UrlController {
         ctx.render("urls/show.jte", Collections.singletonMap("page", page));
     }
 
-    public static void showUrls(Context ctx) throws SQLException {
-        var urls = UrlRepository.getEntities();
-        var checks = UrlCheckRepository.getAllChecks();
-        var page = new UrlsPage(urls, checks);
-        page.setFlash(ctx.consumeSessionAttribute("flash"));
-        page.setFlashType(ctx.consumeSessionAttribute("type"));
-        ctx.render("urls/index.jte", Collections.singletonMap("page", page));
-
-    }
 
     public static void check(Context ctx) throws SQLException {
         var id = ctx.pathParamAsClass("id", Long.class).get();
