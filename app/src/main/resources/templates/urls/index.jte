@@ -29,14 +29,14 @@ content = @`
                     </td>
 
                     <td>
-                        <a>${page.getLastUrlChecks().get(url.getId()) == null ? "" :
-                             FormattedTime.format(page.getLastUrlChecks().get(url.getId()).getCreatedAt())}
+                        <a>${page.getChecks().get(url.getId()) == null ? "" :
+                             FormattedTime.format(page.getChecks().get(url.getId()).getCreatedAt())}
                         </a>
                     </td>
 
                     <td>
-                        <a>${page.getLastUrlChecks().get(url.getId()) == null ? "" :
-                             String.valueOf(page.getLastUrlChecks().get(url.getId()).getStatusCode())}
+                        <a>${page.getChecks().get(url.getId()) == null ? "" :
+                             String.valueOf(page.getChecks().get(url.getId()).getStatusCode())}
                         </a>
                     </td>
                 </tr>

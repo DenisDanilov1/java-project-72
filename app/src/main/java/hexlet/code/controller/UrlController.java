@@ -1,5 +1,6 @@
 package hexlet.code.controller;
 
+import hexlet.code.dto.BasePage;
 import hexlet.code.dto.UrlPage;
 import hexlet.code.dto.UrlsPage;
 import hexlet.code.model.Url;
@@ -19,15 +20,12 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.Collections;
 
-import static io.javalin.rendering.template.TemplateUtil.model;
-
 public class UrlController {
-    public static void index(Context ctx) throws SQLException {
-        var urls = UrlRepository.getEntities();
-        var page = new UrlsPage(urls, UrlCheckRepository.getLastUrlsCheck());
-        page.setFlashType(ctx.consumeSessionAttribute("flashType"));
+    public static void index(Context ctx) {
+        var page = new BasePage();
         page.setFlash(ctx.consumeSessionAttribute("flash"));
-        ctx.render("urls/index.jte", model("page", page));
+        page.setFlashType(ctx.consumeSessionAttribute("type"));
+        ctx.render("index.jte", Collections.singletonMap("page", page));
     }
 
     public static void create(Context ctx) throws SQLException {
