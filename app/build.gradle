@@ -20,6 +20,7 @@ compileJava {
 }
 
 dependencies {
+    implementation("com.konghq:unirest-java:3.14.5")
     implementation('org.postgresql:postgresql:42.7.3')
     implementation('gg.jte:jte:3.1.9')
     implementation('com.h2database:h2:2.2.222')
