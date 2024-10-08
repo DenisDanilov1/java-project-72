@@ -1,6 +1,5 @@
 package hexlet.code.controller;
 
-
 import hexlet.code.model.UrlCheck;
 import hexlet.code.repository.UrlCheckRepository;
 import hexlet.code.repository.UrlRepository;
@@ -42,7 +41,7 @@ public class CheckController {
             ctx.sessionAttribute("flashType", "success");
 
         } catch (Exception e) {
-            ctx.sessionAttribute("flash", "Неверный URL");
+            ctx.sessionAttribute("flash", "Некорректный URL");
             ctx.sessionAttribute("flashType", "danger");
         }
         ctx.redirect(NamedRoutes.urlPath(urlId));
