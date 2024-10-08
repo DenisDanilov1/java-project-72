@@ -17,7 +17,6 @@ import org.jsoup.Jsoup;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Collections;
 
 import static io.javalin.rendering.template.TemplateUtil.model;
 
@@ -28,6 +27,7 @@ public class UrlController {
         var urlChecks = UrlCheckRepository.getLastChecks();
         var page = new UrlsPage(urls, urlChecks);
         page.setFlash(ctx.consumeSessionAttribute("flash"));
+        page.setFlashType(ctx.consumeSessionAttribute("flash-type"));
         ctx.render("urls/index.jte", model("page", page));
     }
 
