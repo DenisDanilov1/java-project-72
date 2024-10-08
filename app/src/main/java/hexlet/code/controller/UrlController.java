@@ -27,7 +27,7 @@ public class UrlController {
         var urlChecks = UrlCheckRepository.getLastChecks();
         var page = new UrlsPage(urls, urlChecks);
         page.setFlash(ctx.consumeSessionAttribute("flash"));
-        page.setFlashType(ctx.consumeSessionAttribute("flash-type"));
+        page.setFlashType(ctx.consumeSessionAttribute("flashType"));
         ctx.render("urls/index.jte", model("page", page));
     }
 
