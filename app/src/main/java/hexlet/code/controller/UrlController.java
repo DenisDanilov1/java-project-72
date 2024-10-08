@@ -61,17 +61,23 @@ public class UrlController {
         }
     }
 
-    public static void showUrl(Context ctx) throws SQLException {
-        var urlId = ctx.pathParamAsClass("id", Long.class).get();
-        var url = UrlRepository.find(urlId)
-                .orElseThrow(() -> new NotFoundResponse("Url" + urlId + "not found"));
+    public static void showUrl(Context ctx) {
+        try {
+            var urlId = ctx.pathParamAsClass("id", Long.class).get();
+            var url = UrlRepository.find(urlId)
+                    .orElseThrow(() -> new NotFoundResponse("Url" + urlId + "not found"));
 
-        var checks = UrlCheckRepository.getChecks(urlId);
-        var page = new UrlPage(url, checks);
+            var checks = UrlCheckRepository.getChecks(urlId);
+            var page = new UrlPage(url, checks);
+            page.setFlashType(ctx.consumeSessionAttribute("flashType"));
+            page.setFlash(ctx.consumeSessionAttribute("flash"));
+            ctx.render("urls/show.jte", model("page", page));
 
-        page.setFlash(ctx.consumeSessionAttribute("flash"));
-        page.setFlashType(ctx.consumeSessionAttribute("type"));
-        ctx.render("urls/show.jte", Collections.singletonMap("page", page));
+        } catch (SQLException e) {
+            ctx.sessionAttribute("flashType", "danger");
+            ctx.sessionAttribute("flash", "Ошибка БД");
+            ctx.redirect(NamedRoutes.urlsPath());
+        }
     }
 
 
